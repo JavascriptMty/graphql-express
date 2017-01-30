@@ -25,7 +25,7 @@ const PokemonType = new GraphQLObjectType({
 		number : {
 			type : GraphQLInt
 		},
-		attack : {
+		attacks : {
 			type : new GraphQLList(AttackType),
 			resolve: (pokemon) => {
 				return Attack.find({
