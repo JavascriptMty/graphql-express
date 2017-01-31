@@ -2,17 +2,21 @@
 Pokemon API using express, graphql and mongoose.
 
 Setup
-
+```javascript
 npm install
+```
 
 Seed
-
-npm seed
+```javascript
+npm run seed
+```
 
 Run
-
+```javascript
 npm start
+```
 
-See
-
+Seed
+```
 http://localhost:7000/graphql
+```
