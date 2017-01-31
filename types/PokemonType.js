@@ -12,6 +12,7 @@ import {
 	GraphQLString,
 	GraphQLList
 } from 'graphql';
+import utils from '../utils';
 
 const PokemonType = new GraphQLObjectType({
 	name : 'pokemon',
@@ -27,22 +28,36 @@ const PokemonType = new GraphQLObjectType({
 		},
 		attacks : {
 			type : new GraphQLList(AttackType),
-			resolve: (pokemon) => {
-				return Attack.find({
-					_id: {
-						$in: pokemon.attacks.map((id) => id.toString())
-					} 
-				});
+			args: {
+				id: {
+					name: 'id',
+					type: GraphQLID
+				},
+				name: {
+					name: 'name',
+					type: GraphQLString
+				}
+			},
+			resolve: (pokemon, args, root, asts) => {
+				let filters = utils.processArgsInCollection(pokemon.attacks, args);
+				return Attack.find(filters);
 			}
 		},
 		categories : {
 			type : new GraphQLList(CategoryType),
-			resolve: (pokemon) => {
-				return Category.find({
-					_id: {
-						$in: pokemon.categories.map((id) => id.toString())
-					} 
-				});
+			args: {
+				id: {
+					name: 'id',
+					type: GraphQLID
+				},
+				name: {
+					name: 'name',
+					type: GraphQLString
+				}
+			},
+			resolve: (pokemon, args, root, asts) => {
+				let filters = utils.processArgsInCollection(pokemon.categories, args);
+				return Category.find(filters);
 			}
 		},
 		preEvolution : {
