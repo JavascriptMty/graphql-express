@@ -3,10 +3,14 @@ import {
 	AttackQuery,
 	PokemonQuery
 } from '../queries';
+import {
+	CategorySave
+} from '../mutations';
 import { 
 	GraphQLObjectType,
 	GraphQLSchema
 } from 'graphql';
+
 
 const query = new GraphQLObjectType({
   name: 'Query',
@@ -17,6 +21,14 @@ const query = new GraphQLObjectType({
   })
 });
 
+const mutation = new GraphQLObjectType({
+  name: 'Mutation',
+  fields: {
+  	categorySave : CategorySave
+  }
+});
+
 export default new GraphQLSchema({
-	query : query
+	query : query,
+	mutation : mutation
 });
