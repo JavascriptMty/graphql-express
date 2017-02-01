@@ -1,5 +1,7 @@
+import { Promise } from 'bluebird'
 import mongoose from 'mongoose';
 
+mongoose.Promise = Promise;
 const Schema = mongoose.Schema;
 
 const AttackSchema = new Schema({
